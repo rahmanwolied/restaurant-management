@@ -72,7 +72,6 @@ async function getCart(userId) {
 			cart = await ShoppingCart.create({ user: userId, items: [] });
 			console.log('cart', cart);
 		}
-
 		return cart;
 	} catch (error) {
 		throw error;

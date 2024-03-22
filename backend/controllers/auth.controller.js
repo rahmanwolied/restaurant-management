@@ -12,7 +12,8 @@ const handleLogin = async (req, res, next) => {
 	try {
 		const { email, password } = req.body;
 
-		const user = await User.findOne({ email: email });
+		let user = await User.findOne({ email: email });
+		if (!user) user = await User.findOne({ name: email });
 		if (!user) throw createError(404, 'User not found');
 
 		const isMatch = await bcrypt.compare(password, user.password);

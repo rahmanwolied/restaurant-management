@@ -15,21 +15,6 @@ const Banner = () => {
 	);
 };
 
-function Search() {
-	return (
-		<section className="search">
-			<div className="overlay"></div>
-			<div className="content">
-				<h1>Find any pill you want.</h1>
-				<form action="">
-					<input type="text" placeholder="Search for a pill" />
-					<button type="submit">Search</button>
-				</form>
-			</div>
-		</section>
-	);
-}
-
 function Home() {
 	return (
 		<>

@@ -50,7 +50,7 @@ const createUser = async (req, res, next) => {
 
 		const user = await User.create(req.body);
 		if (!user) throw createError(500, 'Error creating user');
-		const refreshToken = createJSONWebToken({ _id: user._id }, jwtRefreshKey, '10d');
+		const refreshToken = createJSONWebToken({ _id: user._id }, jwtRefreshKey, '100d');
 
 		return successResponse(res, {
 			statusCode: 201,

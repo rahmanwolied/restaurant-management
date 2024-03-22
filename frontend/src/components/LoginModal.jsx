@@ -22,10 +22,10 @@ const LoginModal = () => {
 					<h2 className="text-xl font-semibold mb-4">Login</h2>
 					<div className="form-control mb-4">
 						<label htmlFor="email" className="label block text-sm font-medium text-gray-600">
-							Email
+							Email / Username
 						</label>
 						<input
-							type="email"
+							type="text"
 							placeholder="Email"
 							onChange={(e) => setEmail(e.target.value)}
 							value={email}

@@ -11,6 +11,7 @@ const isLoggedIn = async (req, res, next) => {
 			throw createError(401, 'No authorization header');
 		}
 		const token = authorization.split(' ')[1];
+
 		if (!token) {
 			throw createError(401, 'No token found');
 		}
@@ -20,7 +21,6 @@ const isLoggedIn = async (req, res, next) => {
 		if (!decoded) {
 			throw createError(401, 'Invalid or expired token');
 		}
-
 		const user = await findWithId(User, decoded._id);
 		if (!user) {
 			throw createError(401, 'Invalid token. Please login again');

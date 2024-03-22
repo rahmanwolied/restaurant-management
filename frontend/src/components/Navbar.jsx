@@ -1,3 +1,4 @@
+import { Logo } from './Logo';
 import LoginModal from './LoginModal';
 import CartDropdown from './CartDropdown';
 import { Link } from 'react-router-dom';
@@ -6,22 +7,10 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 function Navbar() {
 	const { user } = useAuthContext();
-	let isAdmin = false;
-
-	if (user) {
-		isAdmin = user.user.isAdmin;
-	}
 
 	return (
 		<div className="navbar bg-base-100 shadow-md">
-			<div className="flex-1">
-				<Link to="/">
-					<div className="flex justify-center items-center mx-4">
-						<img src="\assets\icons\medicine.png" alt="" className="w-10" />
-						<h1 className="btn btn-ghost normal-case text-2xl text-[#F63D53] font-extrabold font-['Righteous']">HnH Foods</h1>
-					</div>
-				</Link>
-			</div>
+			<Logo />
 			<div className="flex-none">
 				<ul className="menu menu-horizontal px-1 items-center">
 					<li>
@@ -30,9 +19,9 @@ function Navbar() {
 					<li>
 						<Link to="/about">About</Link>
 					</li>
-					{isAdmin && (
+					{user && user.user.isAdmin && (
 						<li>
-							<a href="\admin\admin.html">Admin</a>
+							<Link to="/admin">Admin</Link>
 						</li>
 					)}
 					{!user && (
