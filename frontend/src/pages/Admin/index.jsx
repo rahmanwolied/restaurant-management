@@ -37,8 +37,8 @@ const Admin = () => {
 				</div>
 
 				<div className="flex justify-between">
-					<RecentOrders />
-					<Menu />
+					<RecentOrders orders={orders} orderLoading={orderLoading} />
+					<Menu products={products} productLoading={productLoading} />
 				</div>
 			</section>
 		</>
@@ -51,8 +51,12 @@ function TotalOrders({ ordersNumber, orderLoading }) {
 	return (
 		<div className="bg-white p-4 rounded-lg shadow-md flex items-center w-1/2 md:w-1/4 mb-4 md:mb-0">
 			<div className="text-3xl font-bold mr-4" id="total-orders"></div>
-			<div className="flex gap-2 items-center">
-				{orderLoading ? <span className="loading loading-bars loading-sm"></span> : <div className="text-xl">{ordersNumber}</div>}
+			<div className="flex gap-2 items-center ">
+				{orderLoading ? (
+					<span className="loading loading-bars loading-sm"></span>
+				) : (
+					<div className="text-xl py-1 px-3 rounded-md bg-gray-200">{ordersNumber}</div>
+				)}
 				<div className="text-lg font-semibold">Total Orders</div>
 				<div className="flex items-center text-green-500 text-xl">
 					<i className="bx bx-up-arrow-alt"></i>
@@ -68,7 +72,9 @@ function TotalCustomers({ customerNumber, customerLoading }) {
 		<div className="bg-white p-4 rounded-lg shadow-md flex items-center w-1/2 md:w-1/4 mb-4 md:mb-0">
 			<div className="text-3xl font-bold mr-4" id="total-customers"></div>
 			<div className="flex gap-2 items-center">
-				{(customerLoading && <span className="loading loading-bars loading-sm"></span>) || <div className="text-xl">{customerNumber}</div>}
+				{(customerLoading && <span className="loading loading-bars loading-sm"></span>) || (
+					<div className="text-xl py-1 px-3 rounded-md bg-gray-200">{customerNumber}</div>
+				)}
 				<div className="text-lg font-semibold">Total Customers</div>
 				<div className="flex items-center text-green-500">
 					<i className="bx bx-up-arrow-alt"></i>
