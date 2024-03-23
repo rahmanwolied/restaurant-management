@@ -43,7 +43,7 @@ const handleConfirmOrder = async (req, res, next) => {
 		await order.save();
 		const emailTemplate = {
 			email,
-			subject: 'Account Activation Link',
+			subject: 'Order Status Update',
 			html: `
 			<h2>Hello ${name}!</h2>
 			<p>Your order ${orderId} has been ${status} by the admin.${
