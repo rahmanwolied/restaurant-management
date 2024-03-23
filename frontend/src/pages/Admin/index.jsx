@@ -105,7 +105,7 @@ function TotalCustomers({ customerNumber, customerLoading }) {
 				{(customerLoading && <span className="loading loading-bars loading-sm"></span>) || (
 					<div className="text-xl py-1 px-3 rounded-md bg-gray-200">{customerNumber}</div>
 				)}
-				<div className="text-lg font-semibold">Total Customers</div>
+				<div className="text-lg font-semibold">Total Users</div>
 				<div className="flex items-center text-green-500">
 					<i className="bx bx-up-arrow-alt"></i>
 				</div>

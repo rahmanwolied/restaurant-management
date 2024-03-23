@@ -4,8 +4,15 @@ const Banner = () => {
 		<div className="header">
 			<div className="banner">
 				<div className="hero-text">
-					<h1>Get your medicine from PharmAir</h1>
-					<p>Experience the convenience of PharmAir - your trusted partner for timely prescription deliveries.</p>
+					<h1>Enjoy your tastes from H&H</h1>
+					<p>
+						<b>
+							<i>
+								Irresistible recipes and culinary inspiration await your discovery. Unleash your inner chef and savor the essence of
+								extraordinary flavors.
+							</i>
+						</b>
+					</p>
 				</div>
 				<Link className="get-started" to="/signup">
 					Get Started

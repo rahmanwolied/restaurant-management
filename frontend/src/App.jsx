@@ -5,6 +5,7 @@ import Signup from './pages/Signup';
 import ShoppingCart from './pages/ShoppingCart';
 import Admin from './pages/Admin';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 					<Route path="/cart" element={<ShoppingCart />} />
 					<Route path="/admin" element={<Admin />} />
 				</Routes>
+				<Footer />
 			</BrowserRouter>
 		</div>
 	);
