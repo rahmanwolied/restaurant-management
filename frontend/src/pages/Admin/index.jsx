@@ -11,9 +11,33 @@ const Admin = () => {
 	const [orderLoading, setOrderLoading] = useState(true);
 	const [customerLoading, setCustomerLoading] = useState(true);
 	const [productLoading, setProductLoading] = useState(true);
+	const [user, setUser] = useState(null);
+	const [statusLoading, setStatusLoading] = useState(false);
+
+	async function handleConfirm(id, user, status) {
+		try {
+			setStatusLoading(true);
+			// user.email and user.name in the request body
+			const response = await fetch(`http://localhost:3001/api/orders/confirm/${id}?status=${status}`, {
+				headers: {
+					Authorization: 'Bearer ' + user.refreshToken,
+				},
+			});
+			const json = await response.json();
+			if (json.success) {
+				setOrders(json.payload.orders);
+				setStatusLoading(false);
+			}
+			console.log('Order confirmed:', json);
+		} catch (error) {
+			console.error('Error confirming order:', error);
+		}
+	}
 
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'));
+		console.log('user:', user);
+		setUser(user);
 		fetchAllCustomers('', user).then((customers) => {
 			setCustomers(customers);
 			setCustomerLoading(false);
@@ -37,7 +61,13 @@ const Admin = () => {
 				</div>
 
 				<div className="flex justify-between">
-					<RecentOrders orders={orders} orderLoading={orderLoading} />
+					<RecentOrders
+						orders={orders}
+						orderLoading={orderLoading}
+						handleConfirm={handleConfirm}
+						user={user}
+						statusLoading={statusLoading}
+					/>
 					<Menu products={products} productLoading={productLoading} />
 				</div>
 			</section>

@@ -1,4 +1,4 @@
-export function RecentOrders({ orders, orderLoading }) {
+export function RecentOrders({ orders, orderLoading, handleConfirm, user, statusLoading }) {
 	return (
 		<div className="bg-white p-6 rounded-lg shadow-md w-2/3 mr-4">
 			<div className="text-xl font-semibold mb-4">Recent Orders</div>
@@ -17,8 +17,26 @@ export function RecentOrders({ orders, orderLoading }) {
 					{orderLoading ? (
 						<>
 							<tr>
-								<td colSpan="5">
+								<td>
 									<div className="skeleton h-4 w-full"></div>
+								</td>
+								<td>
+									<div className="skeleton h-4 w-full"></div>
+								</td>
+								<td>
+									<div className="skeleton h-4 w-full"></div>
+								</td>
+								<td>
+									<div className="skeleton h-4 w-full"></div>
+								</td>
+								<td>
+									<div className="skeleton h-4 w-full"></div>
+								</td>
+								<td>
+									<div className="flex gap-3">
+										<div className="skeleton h-14 w-12"></div>
+										<div className="skeleton h-14 w-12"></div>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -34,10 +52,14 @@ export function RecentOrders({ orders, orderLoading }) {
 								<td className="py-2 px-4">{order.createdAt}</td>
 								<td className="py-2 px-4">{order.user.name}</td>
 								<td className="py-2 px-4">৳{order.total}</td>
-								<td className="py-2 px-4">{order.status}</td>
+								<td className="py-2 px-4">
+									{statusLoading ? <span className="loading loading-spinner loading-md"></span> : order.status}
+								</td>
 								<td>
-									<div>
-										<button className="bg-green-500 hover:bg-green-600 hover:scale-110 text-white rounded-lg btn">
+									<div className="flex">
+										<button
+											onClick={async () => await handleConfirm(order._id, user, 'Confirmed')}
+											className="bg-green-500 hover:bg-green-600 hover:scale-110 text-white rounded-lg btn">
 											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
 												<path
 													fill="currentColor"
@@ -45,7 +67,9 @@ export function RecentOrders({ orders, orderLoading }) {
 												/>
 											</svg>
 										</button>
-										<button className="bg-red-500 hover:bg-red-600 hover:scale-110 text-white rounded-lg btn">
+										<button
+											onClick={async () => await handleConfirm(order._id, user, 'Cancelled')}
+											className="bg-red-500 hover:bg-red-600 hover:scale-110 text-white rounded-lg btn">
 											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 72 72">
 												<path
 													fill="#ea5a47"
